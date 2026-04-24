@@ -1,11 +1,13 @@
 .App {
   text-align: center;
-  background-color: var(--bg-dark); /* Garante o azul escuro em todo o fundo */
+  background-color: transparent; 
   min-height: 100vh;
+  position: relative;
 }
 
 main {
-  margin-top: 0; /* Removi o margin para não criar frestas entre as seções */
+  margin-top: 0;
+  background: transparent;
 }
 
 .App-logo {
