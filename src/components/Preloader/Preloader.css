@@ -1,0 +1,148 @@
+.preloader-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #000;
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: opacity 0.5s ease-out, filter 0.5s ease-out;
+}
+
+.preloader-container.fade-out {
+  opacity: 0;
+  filter: blur(10px) brightness(2);
+  pointer-events: none;
+}
+
+.crt-screen {
+  width: 100%;
+  height: 100%;
+  background-color: #050505;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  animation: turnOnCRT 1.2s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+}
+
+@keyframes turnOnCRT {
+  0% {
+    transform: scale(1, 0.001) translate3d(0, 0, 0);
+    filter: brightness(10);
+  }
+  40% {
+    transform: scale(1, 0.001) translate3d(0, 0, 0);
+    filter: brightness(10);
+  }
+  100% {
+    transform: scale(1, 1) translate3d(0, 0, 0);
+    filter: brightness(1);
+  }
+}
+
+
+.scanlines {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    rgba(18, 16, 16, 0) 50%,
+    rgba(0, 0, 0, 0.25) 50%
+  );
+  background-size: 100% 4px;
+  pointer-events: none;
+  z-index: 10;
+}
+
+
+.terminal-content {
+  width: 80%;
+  max-width: 800px;
+  color: #61DAFB;
+  font-family: 'Courier New', Courier, monospace;
+  position: relative;
+  z-index: 20;
+}
+
+.system-text {
+  margin-bottom: 40px;
+}
+
+.system-text p {
+  margin: 5px 0;
+  font-size: 1.2rem;
+  opacity: 0;
+  animation: typeWriterFade 0.1s forwards;
+}
+
+.system-text p:nth-child(1) { animation-delay: 1.2s; }
+.system-text p:nth-child(2) { animation-delay: 2.0s; }
+.system-text p:nth-child(3) { animation-delay: 2.8s; }
+.system-text p:nth-child(4) { animation-delay: 3.5s; }
+
+@keyframes typeWriterFade {
+  to { opacity: 1; }
+}
+
+.loading-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  opacity: 0;
+  animation: typeWriterFade 0.1s forwards 1.2s; 
+}
+
+.loading-percentage {
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+.loading-bar-container {
+  width: 100%;
+  height: 25px;
+  border: 2px solid #61DAFB;
+  padding: 3px;
+  position: relative;
+}
+
+.loading-bar-fill {
+  height: 100%;
+  background-color: #61DAFB;
+  width: 0%;
+  animation: fillBar 3s ease-in-out forwards 1.5s; 
+}
+
+@keyframes fillBar {
+  0% { width: 0%; }
+  30% { width: 20%; }
+  50% { width: 60%; }
+  70% { width: 65%; }
+  100% { width: 100%; }
+}
+
+@media (max-width: 768px) {
+  .terminal-content {
+    width: 90%; 
+  }
+
+  .system-text p {
+    font-size: 0.9rem;
+    margin: 8px 0;
+  }
+
+  .loading-percentage {
+    font-size: 0.85rem;
+  }
+
+  .loading-bar-container {
+    height: 18px;
+  }
+}

@@ -1,0 +1,94 @@
+.skills-section {
+    padding: 150px 0;
+    background-color: var(--bg-dark); /* Usa a cor azul escuro global */
+    overflow: visible;
+    position: relative;
+    z-index: 1;
+}
+
+.skills-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 80px;
+}
+
+.skill-row {
+    display: flex;
+    gap: 40px;
+    transition: all 0.9s cubic-bezier(0.23, 1, 0.32, 1);
+    will-change: transform, opacity, filter;
+}
+
+/* Animações de Entrada e Saída */
+.skill-row.future {
+    opacity: 0;
+    transform: translateY(100px) scale(0.85);
+    filter: blur(10px) grayscale(1);
+}
+
+.skill-row.active {
+    opacity: 1 !important;
+    transform: translateY(0) scale(1) !important;
+    filter: blur(0) grayscale(0) !important;
+}
+
+.skill-row.past {
+    opacity: 0;
+    transform: translateY(-100px) scale(0.85);
+    filter: blur(10px) grayscale(1);
+}
+
+.skill-card {
+    width: 150px;
+    height: 150px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    transition: all 0.4s ease;
+}
+
+.skill-card:hover {
+    transform: translateY(-10px);
+    background: rgba(255, 255, 255, 0.08);
+    border-color: var(--skill-color);
+    box-shadow: 0 10px 40px -10px var(--skill-color);
+}
+
+.skill-icon-img {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+    filter: drop-shadow(0 0 5px var(--skill-color));
+}
+
+.skill-name {
+    color: #fff;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+}
+
+.section-title {
+    font-family: var(--font-title);
+    font-size: 3.5rem;
+    color: #fff;
+    margin-bottom: 50px;
+    text-align: center;
+}
+
+.section-title .destaque-title {
+    background: linear-gradient(90deg, #61DAFB, #a855f7);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    font-weight: 800;
+    /* Um brilho sutil para dar profundidade */
+    filter: drop-shadow(0 0 10px rgba(168, 85, 247, 0.3));
+}
