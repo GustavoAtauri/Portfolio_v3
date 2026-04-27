@@ -1,84 +1,67 @@
-import React, { useEffect, useRef } from "react";
+import React from "react";
 import './Skills.css';
 
-import ReactIcon from '../../assets/icons/react-removebg-preview.png';
-import JSIcon from '../../assets/icons/js-removebg-preview.png';
-import UXIcon from '../../assets/icons/ux-removebg-preview.png';
-import GitIcon from '../../assets/icons/git-removebg-preview.png';
-import SQLIcon from '../../assets/icons/sql-removebg-preview.png';
-import UIIcon from '../../assets/icons/ui-removebg-preview.png';
-
-const skillRows = [
-    { id: 1, skills: [
-        { name: 'React', icon: ReactIcon, color: '#61DAFB' },
-        { name: 'JavaScript', icon: JSIcon, color: '#F7DF1E' },
-    ]},
-    { id: 2, skills: [
-        { name: 'UX', icon: UXIcon, color: '#FF0054' },
-        { name: 'UI', icon: UIIcon, color: '#b3b5bb' }
-    ]},
-    { id: 3, skills: [
-        { name: 'SQL', icon: SQLIcon, color: '#264de4' },
-        { name: 'Git', icon: GitIcon, color: '#F05032' },
-    ]},
-];
-
 const Skills = () => {
-    const rowRefs = useRef([]);
+  return (
+    <section className="skills-section">
+      <div className="skills-header">
+        <h2>Meu Arsenal</h2>
+        <p>Tecnologias e conceitos que utilizo para dar vida às ideias.</p>
+      </div>
 
-    useEffect(() => {
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                const rect = entry.boundingClientRect;
+      <div className="skills-bento">
+        
+        {/* CARD 1: Front-End */}
+        <div className="bento-card bento-wide glow-blue">
+          <h3>Desenvolvimento Front-End</h3>
+          <p>Construção de interfaces modernas, performáticas e totalmente responsivas.</p>
+          <div className="skills-tags">
+            <span className="skill-tag">React.js</span>
+            <span className="skill-tag">JavaScript (ES6+)</span>
+            <span className="skill-tag">HTML5 & CSS3</span>
+            <span className="skill-tag">Tailwind CSS</span>
+          </div>
+          <div className="bg-icon">💻</div>
+        </div>
 
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                    entry.target.classList.remove('future', 'past');
-                } else {
-                    if (rect.top < 0) {
-                        entry.target.classList.add('past');
-                        entry.target.classList.remove('active', 'future');
-                    } else {
-                        entry.target.classList.add('future');
-                        entry.target.classList.remove('active', 'past');
-                    }
-                }
-            });
-        }, {
-            threshold: 0.2,
-            rootMargin: "0px"
-        });
+        {/* CARD 2: Hardware & Montagem */}
+        <div className="bento-card bento-tall glow-green">
+          <h3>Hardware & Montagem</h3>
+          <p>Experiência prática na escolha de componentes, arquitetura de hardware e montagem de computadores de alta performance.</p>
+          <div className="skills-tags" style={{ marginTop: '20px' }}>
+            <span className="skill-tag">Montagem de PC</span>
+            <span className="skill-tag">Otimização de Setup</span>
+            <span className="skill-tag">Hardware Enthusiast</span>
+            <span className="skill-tag">Manutenção</span>
+          </div>
+          <div className="bg-icon">🛠️</div>
+        </div>
 
-        rowRefs.current.forEach(ref => {
-            if (ref) observer.observe(ref);
-        });
+        {/* CARD 3: UI/UX Design */}
+        <div className="bento-card glow-purple">
+          <h3>UI / UX Design</h3>
+          <p>Glassmorphism, Dark Mode e experiências imersivas.</p>
+          <div className="skills-tags">
+            <span className="skill-tag">Figma</span>
+            <span className="skill-tag">Prototipagem</span>
+          </div>
+          <div className="bg-icon">✨</div>
+        </div>
 
-        return () => observer.disconnect();
-    }, []);
+        {/* CARD 4: Ferramentas de Workflow */}
+        <div className="bento-card bento-wide glow-blue">
+          <h3>Ferramentas de Workflow</h3>
+          <div className="marquee-container" style={{ marginTop: '20px' }}>
+            <div className="marquee-content">
+              <span>GIT • GITHUB • VS CODE • NPM • NODE.JS • GSAP • THREE.JS • </span>
+              <span>GIT • GITHUB • VS CODE • NPM • NODE.JS • GSAP • THREE.JS • </span>
+            </div>
+          </div>
+        </div>
 
-    return (
-        <section className="skills-section">
-            <div className="skills-container">
-
-                <h2 className="section-title">Minhas <span className="destaque-title">Skills</span></h2>
-
-                {skillRows.map((row, index) => (
-                    <div 
-                        key={row.id} 
-                        className="skill-row future"
-                        ref={el => rowRefs.current[index] = el}
-                    >
-                        {row.skills.map(skill => (
-                            <div className="skill-card" key={skill.name} style={{ '--skill-color': skill.color }}>
-                                <img src={skill.icon} alt={skill.name} className="skill-icon-img" /> 
-                                <span className="skill-name">{skill.name}</span>
-                            </div>
-                        ))}
-                    </div>
-                ))}
-            </div> 
-        </section>
-    );
-}
+      </div>
+    </section>
+  );
+};
 
 export default Skills;

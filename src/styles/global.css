@@ -38,3 +38,9 @@ body {
     background: var(--primary-color);
     border-radius: 10px;
 }
+
+@media (hover: none) and (pointer: coarse) {
+    .cursor {
+        display: none !important;
+    }
+}

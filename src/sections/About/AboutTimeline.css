@@ -1,0 +1,102 @@
+.timeline-section {
+    position: relative;
+    width: 100%;
+    background-color: transparent;
+}
+
+.timeline-canvas-container {
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.timeline-content {
+    position: relative;
+    z-index: 10;
+    margin-top: -100vh;
+    pointer-events: none; 
+}
+
+
+.timeline-step {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+
+.step-right {
+    justify-content: flex-end; 
+}
+
+.step-left {
+    justify-content: flex-start;
+}
+
+
+.timeline-card {
+    background: rgba(0, 0, 0, 0.5);
+    padding: 30px;
+    border-radius: 16px;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    max-width: 450px;
+    pointer-events: auto; 
+}
+
+.timeline-card h3 {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: var(--text-main, #fff);
+    margin-bottom: 10px;
+    font-family: var(--font-title, sans-serif);
+}
+
+.timeline-card p {
+    color: var(--text-dim, #d1d5db);
+    font-size: 1.1rem;
+    line-height: 1.5;
+}
+
+
+@media (max-width: 768px) {
+    .timeline-step {
+        justify-content: center !important;
+    }
+}
+
+/* =========================================
+   RESPONSIVIDADE MOBILE */
+@media (max-width: 768px) {
+    .timeline-step {
+        align-items: flex-end; 
+        padding-bottom: 80px; 
+    }
+
+    .step-right, .step-left {
+        justify-content: center;
+    }
+
+    .timeline-card {
+        width: 100%;
+        max-width: 100%;
+        padding: 20px;
+    }
+
+    .timeline-card h3 {
+        font-size: 1.4rem;
+    }
+
+    .timeline-card p {
+        font-size: 0.95rem;
+    }
+}

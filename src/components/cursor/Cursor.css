@@ -1,29 +1,38 @@
-.cursor-dot, .cursor-outline {
+html, body, a, button {
+    cursor: none !important;
+}
+
+.cursor {
     position: fixed;
-    pointer-events: none;
-    transform: translate(-50%, -50%);
-    border-radius: 50%;
-    z-index: 9999;
-    transition: transform 0.1s ease-out;
-}
-
-.cursor-dot {
-    width: 8px;
-    height: 8px;
+    top: 0;
+    left: 0;
+    width: 20px;
+    height: 20px;
     background-color: var(--primary-color);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 99999 !important;
+    margin-left: -10px;
+    margin-top: -10px;
+    will-change: transform;
+    transform: translate3d(0, 0, 0);
+    transition: opacity 0.3s ease, width 0.2s ease, height 0.2s ease;
 }
 
-.cursor-outline {
+.cursor-active {
     width: 40px;
     height: 40px;
+    margin-left: -20px;
+    margin-top: -20px;
+    background-color: transparent;
     border: 2px solid var(--primary-color);
-    transition: all 0.15s ease-out;
 }
 
-html, body {
-    cursor: none;
-}
-
-a, button {
-    cursor: none;
+@media (hover: none) and (pointer: coarse) {
+    .cursor {
+        display: none !important;
+    }
+    html, body, a, button {
+        cursor: auto !important;
+    }
 }

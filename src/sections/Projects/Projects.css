@@ -1,6 +1,6 @@
 .projects-section {
     padding: 100px 20px;
-    background-color: var(--bg-dark);
+    background-color: transparent;
 }
 
 .projects-container {
@@ -124,7 +124,7 @@
     }
 }
 
-.hidden {
+.project-hidden {
     opacity: 0;
     filter: blur(5px);
     transform: translateY(30px);
@@ -154,3 +154,34 @@
     transform-style: preserve-3d;
 }
 
+/* =========================================
+   RESPONSIVIDADE MOBILE  */
+@media (max-width: 992px) {
+    .projects-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .section-title {
+        font-size: 2rem;
+        margin-bottom: 30px;
+    }
+    
+    .projects-section {
+        padding: 60px 10px;
+    }
+
+    .projects-grid {
+        grid-template-columns: 1fr;
+        grid-auto-rows: 280px; 
+        gap: 15px;
+    }
+
+    .project-card.large, 
+    .project-card.medium, 
+    .project-card.small {
+        grid-column: span 1;
+        grid-row: span 1;
+    }
+}

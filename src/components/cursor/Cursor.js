@@ -1,23 +1,25 @@
-import React from 'react'
+import React, { useEffect, useRef } from 'react';
+import './Cursor.css';
 import { useMousePosition } from "../../hooks/useMousePosition";
-import "./Cursor.css";
-
 
 const Cursor = () => {
-    const { x, y } = useMousePosition();
+  const cursorRef = useRef(null);
 
-  return (
-    <>
-    <div 
-        className="cursor-dot"
-        style={{left: `${x}px`, top: `${y}px` }}
-    ></div>
-    <div
-        className="cursor-outline"
-        style={{ left: `${x}px`, top: `${y}px`}}
-    ></div>
-    </>
-  )
-}
+  useEffect(() => {
+    const moveCursor = (e) => {
+      if (cursorRef.current) {
+        requestAnimationFrame(() => {
+          cursorRef.current.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0)`;
+        });
+      }
+    };
 
-export default Cursor
+    window.addEventListener('mousemove', moveCursor);
+
+    return () => window.removeEventListener('mousemove', moveCursor);
+  }, []);
+
+  return <div className="cursor" ref={cursorRef}></div>;
+};
+
+export default Cursor;

@@ -1,94 +1,166 @@
+@keyframes border-spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
 .skills-section {
-    padding: 150px 0;
-    background-color: var(--bg-dark); /* Usa a cor azul escuro global */
-    overflow: visible;
     position: relative;
-    z-index: 1;
-}
-
-.skills-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 80px;
-}
-
-.skill-row {
-    display: flex;
-    gap: 40px;
-    transition: all 0.9s cubic-bezier(0.23, 1, 0.32, 1);
-    will-change: transform, opacity, filter;
-}
-
-/* Animações de Entrada e Saída */
-.skill-row.future {
-    opacity: 0;
-    transform: translateY(100px) scale(0.85);
-    filter: blur(10px) grayscale(1);
-}
-
-.skill-row.active {
-    opacity: 1 !important;
-    transform: translateY(0) scale(1) !important;
-    filter: blur(0) grayscale(0) !important;
-}
-
-.skill-row.past {
-    opacity: 0;
-    transform: translateY(-100px) scale(0.85);
-    filter: blur(10px) grayscale(1);
-}
-
-.skill-card {
-    width: 150px;
-    height: 150px;
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 24px;
+    width: 100%;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 15px;
-    transition: all 0.4s ease;
+    padding: 100px 24px;
+    z-index: 10;
 }
 
-.skill-card:hover {
-    transform: translateY(-10px);
-    background: rgba(255, 255, 255, 0.08);
-    border-color: var(--skill-color);
-    box-shadow: 0 10px 40px -10px var(--skill-color);
-}
-
-.skill-icon-img {
-    width: 50px;
-    height: 50px;
-    object-fit: contain;
-    filter: drop-shadow(0 0 5px var(--skill-color));
-}
-
-.skill-name {
-    color: #fff;
-    font-size: 0.85rem;
-    font-weight: 500;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-}
-
-.section-title {
-    font-family: var(--font-title);
-    font-size: 3.5rem;
-    color: #fff;
-    margin-bottom: 50px;
+.skills-header {
     text-align: center;
+    margin-bottom: 60px;
 }
 
-.section-title .destaque-title {
-    background: linear-gradient(90deg, #61DAFB, #a855f7);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    font-weight: 800;
-    /* Um brilho sutil para dar profundidade */
-    filter: drop-shadow(0 0 10px rgba(168, 85, 247, 0.3));
+.skills-header h2 {
+    font-size: 3rem;
+    font-weight: bold;
+    color: #fff;
+    margin-bottom: 10px;
+}
+
+.skills-header p {
+    color: #d1d5db;
+    font-size: 1.2rem;
+}
+
+.skills-bento {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 220px;
+    gap: 24px;
+    width: 100%;
+    max-width: 1100px;
+}
+
+/* ESTILO DO CARD COM A BORDA GIRATÓRIA */
+.bento-card {
+    position: relative;
+    background: #0a0a0f;
+    border-radius: 24px;
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    z-index: 1;
+}
+
+/* O brilho giratório */
+.bento-card::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 200%;
+    height: 200%;
+    background: conic-gradient(
+        transparent,
+        rgba(255, 255, 255, 0.4),
+        transparent 30%
+    );
+    transform: translate(-50%, -50%);
+    animation: border-spin 4s linear infinite;
+    z-index: -2;
+}
+
+/* A máscara que cria a borda fina */
+.bento-card::after {
+    content: '';
+    position: absolute;
+    inset: 1px;
+    background: rgba(10, 10, 15, 0.9);
+    border-radius: 23px;
+    z-index: -1;
+    backdrop-filter: blur(16px);
+}
+
+.bento-card:hover {
+    transform: translateY(-8px);
+}
+
+.bento-card:hover::before {
+    background: conic-gradient(
+        transparent,
+        rgba(255, 255, 255, 0.8),
+        transparent 30%
+    );
+    animation-duration: 2s;
+}
+
+.bento-wide { grid-column: span 2; }
+.bento-tall { grid-row: span 2; }
+
+/* Garantindo que o conteúdo fique visível */
+.bento-card h3, 
+.bento-card p, 
+.bento-card .skills-tags, 
+.bento-card .bg-icon, 
+.bento-card .marquee-container {
+    position: relative;
+    z-index: 2;
+}
+
+.bento-card h3 { font-size: 1.5rem; color: #fff; }
+.bento-card p { color: #9ca3af; font-size: 1rem; line-height: 1.5; }
+
+.skills-tags { display: flex; flex-wrap: wrap; gap: 10px; }
+.skill-tag {
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    padding: 8px 16px;
+    border-radius: 30px;
+    font-size: 0.9rem;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.bg-icon {
+    position: absolute;
+    bottom: -20px;
+    right: -20px;
+    font-size: 120px;
+    opacity: 0.05;
+    z-index: 1;
+    transform: rotate(-15deg);
+}
+
+/* Glow colors */
+.glow-blue:hover { box-shadow: 0 15px 35px -10px rgba(99, 102, 241, 0.3); }
+.glow-green:hover { box-shadow: 0 15px 35px -10px rgba(34, 197, 94, 0.3); }
+.glow-purple:hover { box-shadow: 0 15px 35px -10px rgba(168, 85, 247, 0.3); }
+
+/* Marquee */
+.marquee-container {
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    white-space: nowrap;
+    mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+
+.marquee-content {
+    display: flex;
+    gap: 30px;
+    animation: scroll-marquee 15s linear infinite;
+}
+
+.marquee-content span { font-size: 1.2rem; color: #9ca3af; font-family: monospace; }
+
+@keyframes scroll-marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+@media (max-width: 900px) {
+    .skills-bento { grid-template-columns: 1fr; grid-auto-rows: auto; }
+    .bento-wide, .bento-tall { grid-column: span 1; grid-row: span 1; min-height: 220px; }
 }
