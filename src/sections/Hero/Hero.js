@@ -1,61 +1,55 @@
-import React, {useState, useRef } from 'react';
-import { useMousePosition } from '../../hooks/useMousePosition';
+import React from 'react';
 import './Hero.css';
+import minhaFoto from '../../assets/minha-foto-profissional.jpeg'; 
 
 const Hero = () => {
 
     const scrollToProjects = () => {
-  const projectsSection = document.getElementById('projetos');
-  if (projectsSection) {
-    projectsSection.scrollIntoView({ behavior: 'smooth' });
-    }
+        const projectsSection = document.getElementById('projetos');
+        if (projectsSection) {
+            projectsSection.scrollIntoView({ behavior: 'smooth' });
+        }
     };
-
-    const {x, y} = useMousePosition();
-    const [isHoveringTitle, setIsHoveringTitle] = useState(false);
-    const titleRef = useRef(null);
-    const getRelativeMousePos = () => {
-      if (!titleRef.current) return { relX: 0, relY: 0};
-      const rect = titleRef.current.getBoundingClientRect();
-      return {
-        relX: x - rect.left -150,
-        relY: y - rect.top -100,
-      }
-    };
-
-    const {relX, relY} = getRelativeMousePos ();
-    const maskStyle = {
-      '--mouse-x': `${relX}px`,
-      '--mouse-y': `${relY}px`,
-      '--mask-size': isHoveringTitle ? '220px' : '0px'
-    }
 
     return (
-    <section className='hero-container'>
-        <div className='hero-content'>
-          <div
-          className='title-mask-container'
-          ref={titleRef}
-          onMouseEnter={() => setIsHoveringTitle(true)}  
-          onMouseLeave={() => setIsHoveringTitle(false)}
-          style={maskStyle}
-          >
-            <h1 className='title-base'>
-              Desenvolvedor <br />Front-end
-            </h1>
-            <h1 className='title-reveal' aria-hidden='true'>
-              Designer <br /> UX & UI
-            </h1>
-            </div>
+        <section className='hero-container' id="home">
+            <div className='hero-content'>
+                
+                <div className="hero-text-block">
+                    <h1 className='hero-title'>
+                        Desenvolvedor <br /><span className="highlight-purple">Front-end</span>
+                    </h1>
 
-            <p>Especialista em React e interfaces de alta performance.</p>
-            <div className='hero-btns'>
-                <button className='cta-button' onClick={scrollToProjects}>Ver Projetos</button>
-                <button className='secondary-button'>Meu GitHub</button>
-            </div>
-        </div>
-    </section>
-  );
-}
+                    <p>Desenvolvedor web focado em interfaces imersivas e de alta performance, Estudante de Engenharia da Computação</p>
 
-export default Hero
+                    <div className='hero-btns'>
+                        <button className='btn-primary' onClick={scrollToProjects}>
+                            Ver Projetos
+                        </button>
+                        
+                        <a 
+                            href="https://github.com/gustavoatauri" 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            style={{ textDecoration: 'none' }}
+                        >
+                            <button className='btn-secondary'>
+                                GitHub
+                            </button>
+                        </a>
+                    </div>
+                </div>
+
+                <div className="hero-photo-card">
+                    <div className="photo-card-inner">
+                        <img src={minhaFoto} alt="Gustavo - Desenvolvedor Front-end" />
+                        <div className="photo-glow-effect"></div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    );
+};
+
+export default Hero;

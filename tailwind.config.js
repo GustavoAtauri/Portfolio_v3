@@ -3,7 +3,7 @@ const { default: flattenColorPalette } = require("tailwindcss/lib/util/flattenCo
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
-    "./src/**/*.{js,jsx,ts,tsx}", // Ajustado para ler seus arquivos .js e .jsx
+    "./src/**/*.{js,jsx,ts,tsx}", 
   ],
   darkMode: "class",
   theme: {
@@ -26,7 +26,6 @@ module.exports = {
   plugins: [addVariablesForColors],
 };
 
-// Este plugin cria variáveis de cor para o Aceternity usar
 function addVariablesForColors({ addBase, theme }) {
   let allColors = flattenColorPalette(theme("colors"));
   let newVars = Object.fromEntries(

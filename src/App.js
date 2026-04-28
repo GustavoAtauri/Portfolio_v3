@@ -9,6 +9,7 @@ import Preloader from './components/Preloader/Preloader';
 import { AuroraBackground } from './components/ui/aurora-background'; 
 import AboutTimeline from './sections/About/AboutTimeline';
 import { ReactLenis } from 'lenis/react';
+import Contact from './sections/Contato/Contact';
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -36,6 +37,7 @@ function App() {
               <Projects />
               <AboutTimeline />
               <Skills />
+              <Contact />
             </main>
           </div>
 

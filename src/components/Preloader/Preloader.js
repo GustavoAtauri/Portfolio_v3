@@ -22,7 +22,7 @@ const Preloader = ({ onComplete }) => {
     return (
     <div className={`preloader-container ${isFadingOut ? 'fade-out' : ''}`}>
       <div className="crt-screen">
-        {/* Efeito de scanlines de TV antiga */}
+        
         <div className="scanlines"></div>
         
         <div className="terminal-content">

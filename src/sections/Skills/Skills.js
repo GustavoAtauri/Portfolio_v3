@@ -3,7 +3,7 @@ import './Skills.css';
 
 const Skills = () => {
   return (
-    <section className="skills-section">
+    <section id="skills" className="skills-section">
       <div className="skills-header">
         <h2>Meu Arsenal</h2>
         <p>Tecnologias e conceitos que utilizo para dar vida às ideias.</p>
@@ -11,7 +11,7 @@ const Skills = () => {
 
       <div className="skills-bento">
         
-        {/* CARD 1: Front-End */}
+        {/* CARD 1*/}
         <div className="bento-card bento-wide glow-blue">
           <h3>Desenvolvimento Front-End</h3>
           <p>Construção de interfaces modernas, performáticas e totalmente responsivas.</p>
@@ -24,7 +24,7 @@ const Skills = () => {
           <div className="bg-icon">💻</div>
         </div>
 
-        {/* CARD 2: Hardware & Montagem */}
+        {/* CARD 2 */}
         <div className="bento-card bento-tall glow-green">
           <h3>Hardware & Montagem</h3>
           <p>Experiência prática na escolha de componentes, arquitetura de hardware e montagem de computadores de alta performance.</p>
@@ -37,7 +37,7 @@ const Skills = () => {
           <div className="bg-icon">🛠️</div>
         </div>
 
-        {/* CARD 3: UI/UX Design */}
+        {/* CARD 3*/}
         <div className="bento-card glow-purple">
           <h3>UI / UX Design</h3>
           <p>Glassmorphism, Dark Mode e experiências imersivas.</p>
@@ -48,7 +48,7 @@ const Skills = () => {
           <div className="bg-icon">✨</div>
         </div>
 
-        {/* CARD 4: Ferramentas de Workflow */}
+        {/* CARD 4*/}
         <div className="bento-card bento-wide glow-blue">
           <h3>Ferramentas de Workflow</h3>
           <div className="marquee-container" style={{ marginTop: '20px' }}>

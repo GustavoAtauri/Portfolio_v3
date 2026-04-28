@@ -100,3 +100,11 @@
         font-size: 0.95rem;
     }
 }
+
+.timeline-section h2 {
+    font-family: var(--font-title);
+    font-size: 2.5rem;
+    color: #fff;
+    margin-top: 180px;
+    text-align: center;
+}

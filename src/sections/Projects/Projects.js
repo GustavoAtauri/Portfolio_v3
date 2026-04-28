@@ -1,16 +1,33 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+import { createPortal } from 'react-dom';
 import './Projects.css';
 import portfoliov1 from '../../assets/projects/portfoliov1.png';
+import agro from '../../assets/projects/agro.png';
+import medico from '../../assets/projects/medico.png';
+import jogos from '../../assets/projects/jogos.png';
 
 const projectsData = [
-  { id: 1, title: "E-commerce Premium", category: "Fullstack Development", size: "large", image: portfoliov1 },
-  { id: 2, title: "App de Finanças", category: "UX/UI Design", size: "medium", image: "https://via.placeholder.com/400x400" },
-  { id: 3, title: "Dashboard Admin", category: "React / Node.js", size: "small", image: "https://via.placeholder.com/400x300" },
-  { id: 4, title: "Plataforma SaaS", category: "Product Design", size: "medium", image: "https://via.placeholder.com/400x400" }
+  { 
+    id: 1, title: "Portfolio V1", category: "Personal Development", size: "large", image: portfoliov1,
+    liveLink: "https://gustavoatauri.github.io/portfolio_v2", githubLink: "https://github.com/GustavoAtauri/portfolio_v2" 
+  },
+  { 
+    id: 2, title: "SaaS Agro", category: "UX/UI Design", size: "medium", image: agro,
+    liveLink: "https://gustavoatauri.github.io/project-agro", githubLink: "https://github.com/GustavoAtauri/project-agro" 
+  },
+  { 
+    id: 3, title: "Gestão Hospitalar", category: "Healthcare Design", size: "small", image: medico,
+    liveLink: "https://gustavoatauri.github.io/my-projects", githubLink: "https://github.com/GustavoAtauri/my-projects" 
+  },
+  { 
+    id: 4, title: "GameStore SaaS", category: "UX/UI Design", size: "medium", image: jogos,
+    liveLink: "https://gustavoatauri.github.io/project-loja-jogos", githubLink: "https://github.com/GustavoAtauri/project-loja-jogos" 
+  }
 ];
 
 const Projects = () => {
   const scrollRefs = useRef([]);
+  const [selectedProject, setSelectedProject] = useState(null); 
 
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
@@ -30,6 +47,12 @@ const Projects = () => {
     return () => observer.disconnect();
   }, []);
 
+  const handleCloseModal = (e) => {
+    if (e.target.className === 'modal-overlay') {
+      setSelectedProject(null);
+    }
+  };
+
   return (
     <section className="projects-section" id="projetos">
       <div className="projects-container">
@@ -45,22 +68,50 @@ const Projects = () => {
             <div 
               key={project.id} 
               className={`project-card ${project.size} project-hidden`}
-              // Ref apenas para o Observer
               ref={el => scrollRefs.current[index + 1] = el}
-              // REMOVEMOS os eventos de mouseMove/mouseLeave daqui
             >
               <div className="project-image-wrapper">
                 <img src={project.image} alt={project.title} />
                 <div className="project-overlay">
                   <span className="project-category">{project.category}</span>
                   <h3 className="project-item-title">{project.title}</h3>
-                  <button className="view-project-btn">Ver Detalhes</button>
+                  <button 
+                    className="view-project-btn"
+                    onClick={() => setSelectedProject(project)}
+                  >
+                    Ver Detalhes
+                  </button>
                 </div>
               </div>
             </div>
           ))}
         </div>
       </div>
+
+      {selectedProject && createPortal(
+        <div className="modal-overlay" onClick={handleCloseModal}>
+          <div className="modal-content">
+            <button className="close-modal-btn" onClick={() => setSelectedProject(null)}>×</button>
+            
+            <img src={selectedProject.image} alt={selectedProject.title} className="modal-image" />
+            
+            <div className="modal-info">
+              <span className="modal-category">{selectedProject.category}</span>
+              <h3 className="modal-title">{selectedProject.title}</h3>
+              
+              <div className="modal-actions">
+                <a href={selectedProject.liveLink} target="_blank" rel="noopener noreferrer" className="modal-btn btn-live">
+                  🌐 Acessar Site
+                </a>
+                <a href={selectedProject.githubLink} target="_blank" rel="noopener noreferrer" className="modal-btn btn-github">
+                  💻 Ver Código
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>,
+        document.body
+      )}
     </section>
   );
 };
