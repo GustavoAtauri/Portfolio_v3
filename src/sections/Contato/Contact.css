@@ -121,10 +121,64 @@
 }
 
 @media (max-width: 768px) {
-    .contact-title { font-size: 2.5rem; }
-    .contact-grid { grid-template-columns: 1fr 1fr; }
+    .contact-section {
+        padding: 60px 5%; 
+    }
+
+    .contact-title {
+        font-size: 2.2rem; 
+    }
+
+    .contact-header {
+        margin-bottom: 40px;
+    }
+
+    .contact-header p {
+        font-size: 1rem;
+    }
+
+    .contact-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr); 
+        gap: 8px;
+    }
+
+    .contact-card {
+        padding: 15px 5px; 
+        border-radius: 12px;
+    }
+
+    .contact-icon {
+        font-size: 1.5rem; 
+        margin-bottom: 5px;
+    }
+
+    .contact-card h3 {
+        font-size: 0.65rem; 
+        letter-spacing: 0;
+    }
+
+    .contact-card p {
+        display: none;
+    }
+
+    .contact-glow {
+        width: 30px;
+        height: 30px;
+        filter: blur(20px);
+    }
 }
 
-@media (max-width: 480px) {
-    .contact-grid { grid-template-columns: 1fr; }
+@media (max-width: 380px) {
+    .contact-grid {
+        gap: 5px;
+    }
+    
+    .contact-card h3 {
+        font-size: 0.55rem;
+    }
+    
+    .contact-icon {
+        font-size: 1.2rem;
+    }
 }
